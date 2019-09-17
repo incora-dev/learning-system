@@ -1,0 +1,306 @@
+[
+  {
+    "model": "mylearnview_core.page",
+    "pk": 1,
+    "fields": {
+      "module": 1,
+      "pagetype": "image",
+      "custom_content": "",
+      "image_file_reference": "http://res.cloudinary.com/mylearnview-dev/image/upload/v1498826033/qaylkbakmgb08d7hcxs3.png",
+      "sort_index": 1
+    }
+  },
+  {
+    "model": "mylearnview_core.page",
+    "pk": 2,
+    "fields": {
+      "module": 1,
+      "pagetype": "image",
+      "custom_content": "",
+      "image_file_reference": "http://res.cloudinary.com/mylearnview-dev/image/upload/v1498826037/dvhx8d5nnr2hspvs2s46.png",
+      "sort_index": 2
+    }
+  },
+  {
+    "model": "mylearnview_core.page",
+    "pk": 3,
+    "fields": {
+      "module": 2,
+      "pagetype": "image",
+      "custom_content": "",
+      "image_file_reference": "http://res.cloudinary.com/mylearnview-dev/image/upload/v1498826458/rxogocxjcqna3yaiiini.png",
+      "sort_index": 1
+    }
+  },
+  {
+    "model": "mylearnview_core.page",
+    "pk": 4,
+    "fields": {
+      "module": 2,
+      "pagetype": "image",
+      "custom_content": "",
+      "image_file_reference": "http://res.cloudinary.com/mylearnview-dev/image/upload/v1498826461/kgeyase9fpkirbtvlrcc.png",
+      "sort_index": 2
+    }
+  },
+  {
+    "model": "mylearnview_core.page",
+    "pk": 5,
+    "fields": {
+      "module": 2,
+      "pagetype": "image",
+      "custom_content": "",
+      "image_file_reference": "http://res.cloudinary.com/mylearnview-dev/image/upload/v1498826465/hkbx8je0s0ksx3hfgvha.png",
+      "sort_index": 3
+    }
+  },
+  {
+    "model": "mylearnview_core.page",
+    "pk": 6,
+    "fields": {
+      "module": 2,
+      "pagetype": "image",
+      "custom_content": "",
+      "image_file_reference": "http://res.cloudinary.com/mylearnview-dev/image/upload/v1498826468/hqnl2kjuu4hcrczx8o34.png",
+      "sort_index": 4
+    }
+  },
+  {
+    "model": "mylearnview_core.page",
+    "pk": 7,
+    "fields": {
+      "module": 2,
+      "pagetype": "image",
+      "custom_content": "",
+      "image_file_reference": "http://res.cloudinary.com/mylearnview-dev/image/upload/v1498826471/cpvwoxnwrrdamflpmxwx.png",
+      "sort_index": 5
+    }
+  },
+  {
+    "model": "mylearnview_core.page",
+    "pk": 8,
+    "fields": {
+      "module": 3,
+      "pagetype": "image",
+      "custom_content": "",
+      "image_file_reference": "http://res.cloudinary.com/mylearnview-dev/image/upload/v1498826528/fdinrdtv7sdmyqhz3kcq.png",
+      "sort_index": 1
+    }
+  },
+  {
+    "model": "mylearnview_core.page",
+    "pk": 9,
+    "fields": {
+      "module": 3,
+      "pagetype": "image",
+      "custom_content": "",
+      "image_file_reference": "http://res.cloudinary.com/mylearnview-dev/image/upload/v1498826532/pzwpx4ewtwbbkkjezfzn.png",
+      "sort_index": 2
+    }
+  },
+  {
+    "model": "mylearnview_user.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$vgPXssEh7TKp$GpeBQki6EKZqPFiT3h8StYSOrKAyLJDvhSygDHc22Pk=",
+      "last_login": "2018-02-27T09:57:53.730Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2018-02-16T15:53:21.011Z",
+      "email": "dev@ya.ru",
+      "user_type": "student",
+      "expand_type": "r/n",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "mylearnview_user.user",
+    "pk": 34,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$sKfCElIhWPKz$RkCiQlv/1dxDWEk61bZddur9MfTrxlBe+aEbAoVt09E=",
+      "last_login": "2017-06-30T12:20:44Z",
+      "is_superuser": true,
+      "username": "superuser",
+      "first_name": "",
+      "last_name": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2017-06-30T12:20:34Z",
+      "email": "superuser@appresso.no",
+      "user_type": "coursemanager",
+      "expand_type": "r/n",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "mylearnview_user.user",
+    "pk": 35,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$Vp5nl9HCoqNT$mdzFIEoy0hQpzNy1kmJfwJlqzGLEPgsyjp7JuCaVOec=",
+      "last_login": "2018-02-23T14:02:07.224Z",
+      "is_superuser": false,
+      "username": "some",
+      "first_name": "",
+      "last_name": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-02-23T13:47:38.376Z",
+      "email": "dev1@ya.ru",
+      "user_type": "student",
+      "expand_type": "r/n",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "mylearnview_core.studentcourseaccess",
+    "pk": 1,
+    "fields": {
+      "student": 1,
+      "course": 1,
+      "created_datetime": "2018-02-23T13:36:33.471Z",
+      "added_by": 1
+    }
+  },
+  {
+    "model": "mylearnview_core.studentcourseaccess",
+    "pk": 2,
+    "fields": {
+      "student": 35,
+      "course": 1,
+      "created_datetime": "2018-02-23T13:48:53.192Z",
+      "added_by": 1
+    }
+  },
+  {
+    "model": "mylearnview_core.studentpagenote",
+    "pk": 1,
+    "fields": {
+      "student": 34,
+      "page": 2,
+      "created_datetime": "2017-06-30T12:34:33.067Z",
+      "note": "first comment"
+    }
+  },
+  {
+    "model": "mylearnview_core.studentpagehistory",
+    "pk": 1,
+    "fields": {
+      "student": 34,
+      "module": 1,
+      "last_page": 1,
+      "last_visited_datetime": null
+    }
+  },
+  {
+    "model": "mylearnview_core.studentpagehistory",
+    "pk": 2,
+    "fields": {
+      "student": 34,
+      "module": 2,
+      "last_page": 4,
+      "last_visited_datetime": null
+    }
+  },
+  {
+    "model": "mylearnview_core.studentpagehistory",
+    "pk": 3,
+    "fields": {
+      "student": 34,
+      "module": 3,
+      "last_page": 9,
+      "last_visited_datetime": null
+    }
+  },
+  {
+    "model": "mylearnview_core.studentpagehistory",
+    "pk": 4,
+    "fields": {
+      "student": 35,
+      "module": 1,
+      "last_page": 1,
+      "last_visited_datetime": "2018-02-23T13:49:20.372Z"
+    }
+  },
+  {
+    "model": "mylearnview_core.module",
+    "pk": 1,
+    "fields": {
+      "course": 1,
+      "title": "Django",
+      "sort_index": 1,
+      "description": "",
+      "pdf_file": null,
+      "created_by": 34,
+      "created_datetime": "2017-06-30T12:33:32.097Z",
+      "pages_ready": true
+    }
+  },
+  {
+    "model": "mylearnview_core.module",
+    "pk": 2,
+    "fields": {
+      "course": 1,
+      "title": "Django REST framework",
+      "sort_index": 2,
+      "description": "Django REST framework is a powerful and flexible toolkit for building Web APIs.\r\n\r\nSome reasons you might want to use REST framework:\r\n\r\nThe Web browsable API is a huge usability win for your developers.\r\nAuthentication policies including packages for OAuth1a and OAuth2.\r\nSerialization that supports both ORM and non-ORM data sources.\r\nCustomizable all the way down - just use regular function-based views if you don't need the more powerful features.\r\nExtensive documentation, and great community support.\r\nUsed and trusted by internationally recognised companies including Mozilla, Red Hat, Heroku, and Eventbrite.",
+      "pdf_file": null,
+      "created_by": 34,
+      "created_datetime": "2017-06-30T12:40:51.574Z",
+      "pages_ready": true
+    }
+  },
+  {
+    "model": "mylearnview_core.module",
+    "pk": 3,
+    "fields": {
+      "course": 1,
+      "title": "Flask",
+      "sort_index": 3,
+      "description": "Flask is a micro web framework written in Python and based on the Werkzeug toolkit and Jinja2 template engine. It is BSD licensed.\r\n\r\nThe latest stable version of Flask is 0.12 as of December 2016.[2] Applications that use the Flask framework include Pinterest,[3] LinkedIn,[4] and the community web page for Flask itself.[5]\r\n\r\nFlask is called a micro framework because it does not require particular tools or libraries.[6] It has no database abstraction layer, form validation, or any other components where pre-existing third-party libraries provide common functions. However, Flask supports extensions that can add application features as if they were implemented in Flask itself. Extensions exist for object-relational mappers, form validation, upload handling, various open authentication technologies and several common framework related tools. Extensions are updated far more regularly than the core Flask program.[7]",
+      "pdf_file": null,
+      "created_by": 34,
+      "created_datetime": "2017-06-30T12:42:03.234Z",
+      "pages_ready": true
+    }
+  },
+  {
+    "model": "mylearnview_core.course",
+    "pk": 1,
+    "fields": {
+      "title": "Python",
+      "icon": null,
+      "description": "Python is a widely used high-level programming language for general-purpose programming, created by Guido van Rossum and first released in 1991. An interpreted language, Python has a design philosophy which emphasizes code readability (notably using whitespace indentation to delimit code blocks rather than curly brackets or keywords), and a syntax which allows programmers to express concepts in fewer lines of code than might be used in languages such as C++ or Java.[22][23] The language provides constructs intended to enable writing clear programs on both a small and large scale.[24]\r\n\r\nPython features a dynamic type system and automatic memory management and supports multiple programming paradigms, including object-oriented, imperative, functional programming, and procedural styles. It has a large and comprehensive standard library.[25]\r\n\r\nPython interpreters are available for many operating systems, allowing Python code to run on a wide variety of systems. CPython, the reference implementation of Python, is open source software[26] and has a community-based development model, as do nearly all of its variant implementations. CPython is managed by the non-profit Python Software Foundation.",
+      "created_by": 34,
+      "created_datetime": "2017-06-30T12:21:24Z"
+    }
+  },
+  {
+    "model": "mylearnview_core.course",
+    "pk": 2,
+    "fields": {
+      "title": "PHP",
+      "icon": null,
+      "description": "PHP is a server-side scripting language designed primarily for web development but also used as a general-purpose programming language. Originally created by Rasmus Lerdorf in 1994,[4] the PHP reference implementation is now produced by The PHP Development Team.[5] PHP originally stood for Personal Home Page,[4] but it now stands for the recursive acronym PHP: Hypertext Preprocessor.[6]\r\n\r\nPHP code may be embedded into HTML or HTML5 markup, or it can be used in combination with various web template systems, web content management systems and web frameworks. PHP code is usually processed by a PHP interpreter implemented as a module in the web server or as a Common Gateway Interface (CGI) executable. The web server software combines the results of the interpreted and executed PHP code, which may be any type of data, including images, with the generated web page. PHP code may also be executed with a command-line interface (CLI) and can be used to implement standalone graphical applications.[7]",
+      "created_by": 34,
+      "created_datetime": "2017-06-30T12:21:29Z"
+    }
+  },
+  {
+    "model": "mylearnview_core.course",
+    "pk": 3,
+    "fields": {
+      "title": "Objective-C",
+      "icon": null,
+      "description": "Objective-C is a general-purpose, object-oriented programming language that adds Smalltalk-style messaging to the C programming language. It was the main programming language used by Apple for the OS X and iOS operating systems, and their respective application programming interfaces (APIs) Cocoa and Cocoa Touch prior to the introduction of Swift.\r\n\r\nThe programming language Objective-C was originally developed in the early 1980s. It was selected as the main language used by NeXT for its NeXTSTEP operating system, from which OS X and iOS are derived.[3] Portable Objective-C programs that do not use the Cocoa or Cocoa Touch libraries, or those using parts that may be ported or reimplemented for other systems, can also be compiled for any system supported by GNU Compiler Collection (GCC) or Clang.\r\n\r\nObjective-C source code 'implementation' program files usually have .m filename extensions, while Objective-C 'header/interface' files have .h extensions, the same as C header files. Objective-C++ files are denoted with a .mm file extension.",
+      "created_by": 34,
+      "created_datetime": "2017-06-30T12:22:57.060Z"
+    }
+  }
+]

@@ -1,0 +1,168 @@
+{% extends "app/base.html" %}
+
+{% load static from staticfiles %}
+
+{% block content %}
+
+    <main xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+            <div class="mod_detail">
+                <div class="container">
+
+                  <div class="row">
+                      <div class="col-sm-12 breacrumbs">
+                          <a href="{% url 'home' %}">Library </a>  {% if course %}| <a href="{% url 'course_detail' course.id %}">{{ course.title }} </a> {% endif %} {% if module %}| <a href="{% url 'module_detail' course.id module.id %}">{{ module.title }}</a>{% endif %}
+                      </div>
+                  </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <h2>{{ module.title }}</h2>
+                        </div>
+                        <div class="col-xs-8 nopadding">
+                          <ul class="switch-btn">
+                            <li class="btn-left"{% if "/study" in request.path  %}class="active"{% endif %}>  <a href="{% url "module_detail" course.id module.id %}" class="btn-left active">Study</a> </li>
+                            <li class="btn-right"{% if "/overview" in request.path %}class="active"{% endif %}>  <a href="{% url "module_overview" course.id module.id %}" class="btn-right ">Overview</a>  </li>
+                          </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 mod_detail_container">
+                          {% if module.pages_ready %}
+                             {% if page_obj.has_other_pages %}{% load paginator %} {% paginator 2 %}{% endif %}
+
+                             <nav class="notes_wrapp">
+                                 <ul class="notes">
+
+                                     <li><a href="{% url 'module_detail' course.id module.id %}?expand=read"
+                                         class="btn btn-default {% if user.expand_type == 'read' %}active{% endif %}"
+                                         id="prevButton">Expand read</a></li>
+                                     <li><a href="{% url 'module_detail' course.id module.id %}?expand=r/n"
+                                         class="btn btn-default {% if user.expand_type == 'r/n' %}active{% endif %}"
+                                         id="prevButton">Read and notes</a></li>
+                                     <li><a href="{% url 'module_detail' course.id module.id %}?expand=notes"
+                                         class="btn btn-default {% if user.expand_type == 'notes' %}active{% endif %}"
+                                         id="prevButton">Expand notes</a></li>
+                                 </ul>
+                             </nav>
+
+                               {% for page in page_obj %}
+                            {% if request.GET.expand == 'r/n' or 'expand' not in request.GET and user.expand_type == 'r/n' %}<div class="dots"></div>{% endif %}
+                                           <div id="documentField" {% if user.expand_type == 'read' %}class="col-xs-12"
+                                                {% elif user.expand_type == 'notes' %}class="hide"
+                                                {% else %}class="col-xs-7"
+                                                {% endif %}>
+                                                 {% if page.pagetype  == 'custom' %}
+                                                    {{ page.custom_content|safe }}
+                                                {% elif page.pagetype  == 'image' %}
+                                                    {% if request.GET.expand == 'r/n' or 'expand' not in request.GET and user.expand_type == 'r/n' %}
+                                                   <img style="width: 535px" class="img-responsive" src={{ page.image_file_reference }}>
+                                                    {% else %}
+                                                   <img class="img-responsive" src={{ page.image_file_reference }}>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </div>
+                                           <div {% if user.expand_type == 'notes' %}class="col-xs-12"
+                                                {% elif user.expand_type == 'read' %}class="hide"
+                                                {% else %}class="col-xs-5"
+                                                {% endif %}>
+                                           </div>
+                                   {% endfor %}
+                            <div class="mod_detail_container-right
+                                 {% if user.expand_type == 'notes' %}col-xs-12
+                                 {% elif user.expand_type == 'read' %}hide
+                                 {% else %}col-md-5 col-xs-12
+                                 {% endif %}">
+                                <form class="form-ho
+                                rizontal" action="{% url 'module_detail' course.id module.id %}" method="post"
+                                  enctype="multipart/form-data" >
+                                                  {% csrf_token %}
+                                <div class="add-notes">
+                                    <h5>Notes</h5>
+                                    <input id="inputCoord" name="coord" value="" class="hidden">
+                                    <textarea name="inputNote"  id="inputNote" class="hidden form-control custm"
+                                           ></textarea>
+                                    <button id="inputBtn"  class="hidden"  type="submit">Add Note</button>
+                                </div>
+                                </form>
+                                <div class="row notes-list">
+                                  {% for note in notes %}
+
+                                  <div {% if note.coord %}data-coord="{{ note.coord }}"{% endif %} class="well cust-note">
+                                    <h6 class="collection-item bold note-text">{{ note.note |linebreaks }}</h6>
+
+                                    {{ note.created_datetime |date:'d-m-Y H:i' }}
+
+                                      <div class="note-controls">
+
+                                          <a href="#edit_note_{{ note.id }}" class="note-edit-icon"></a>
+
+                                          <a href="#delete_note_{{ note.id }}" class="note-delete-icon"></a>
+
+                                      </div>
+                                  </div>
+                                  <div class="popup edit-note-modal mfp-hide" id="edit_note_{{ note.id }}">
+                                      <h5>Edit this note:</h5>
+                                      <form action="{% url 'student_page_note_edit' note.page.module.course.id note.page.module.id note.id %}" method="post">
+                                          <textarea name="note" class="textarea-note-modal form-control custminputNote"
+                                                 >{{ note.note }}</textarea>
+                                      <div>
+                                          {% csrf_token %}
+                                          <button href="#" type="button" class="save-btn mfp-close">Cancel</button>
+                                          <button type="submit" class="save-btn"/>Save</button>
+                                      </div>
+                                      </form>
+                                  </div>
+
+                                  <div class="popup mfp-hide" id="delete_note_{{ note.id }}">
+                                      <h5>Delete this note?</h5>
+                                      <form action="{% url 'student_page_note_delete' note.page.module.course.id note.page.module.id note.id %}" method="post">
+                                          <div class="btn-wrapp">
+                                          <button href="#" type="button"  class="save-btn mfp-close">Cancel</button>
+                                          <button name="submit" type="submit" class="save-btn"/>Yes</button>
+                                          {% csrf_token %}
+                                          </div>
+                                      </form>
+                                  </div>
+
+                                  {% endfor %}
+
+
+
+                                </div>
+
+                            {% else %}
+                                    <h5>Module is empty!</h5>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% if not user.get_manager_permission %}
+                    <button href="#send_message" class="normal-btn send_message">Send Message to <span class="hidden-xs">Course</span> Admin</button>
+                {% endif %}
+                </div>
+            </div>
+            </div>
+          <div class="hidden">
+            <div class="popup send_toadmin" id="send_message">
+              <h5>Send Message to Course Admin</h5>
+        <div class="col-xs-12">
+          <input type="text" id="id_subject" name="subject" placeholder="Subject">
+          <textarea name="message" id="id_message" placeholder="Message"></textarea>
+          <a href="#" class="mfp-close send-btn">Send Message</a>
+        </div>
+            </div>
+
+          </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+
+                        <p>Cources Management. All Rights Reserved.</p>
+
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+{% endblock content %}

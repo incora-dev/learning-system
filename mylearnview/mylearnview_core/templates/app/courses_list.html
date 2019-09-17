@@ -1,0 +1,63 @@
+{% extends "app/base.html" %}
+{% load static from staticfiles %}
+{% load cloudinary %}
+{% block content %}
+
+    <main>
+        <div class="courses-list">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 breacrumbs">
+                        <a href="{% url 'home' %}">Library </a>  {% if course %}|
+                        <a href="{% url 'course_detail' course.id %}">{{ course.title }} </a> {% endif %}
+                        {% if module %}|
+                            <a href="{% url 'module_detail' course.id module.id %}">>{{ module.title }}</a>{% endif %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h2 class="center">{% if user.get_manager_permission %}All{% else %}Available{% endif %} courses</h2>
+                    {% for course in available %}
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            {% include 'app/_course_preview.html' with block=False %}
+                        </div>
+                    {% empty %}
+                        <h3 class="center">You haven't any available courses</h3>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                    {% if closed %}
+                        <h2 class="center">Not available courses</h2>
+                        {% for course in closed %}
+                            <div class="col-lg-4 col-md-4 col-sm-6">
+                                {% include 'app/_course_preview.html' with block=True %}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if user.get_manager_permission %}
+                        <div class="row round-btn-wrapp">
+                            <div class="col-xs-12">
+                                <a href="{% url 'course_add' %}" class="round-btn" class="orange-btn"
+                                   id="addCourseButton">+</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <p>Cources Management. All Rights Reserved.</p>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+{% endblock content %}

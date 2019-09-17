@@ -1,0 +1,91 @@
+{% extends "app/base.html" %}
+
+{% load static from staticfiles %}
+
+{% block content %}
+
+ <main>
+     <div class="courses-list">
+         <div class="container">
+           <div class="row">
+               <div class="col-sm-12 breacrumbs">
+                   <a href="{% url 'home' %}">Library </a>  {% if course %}| <a href="{% url 'course_detail' course.id %}">{{ course.title }} </a> {% endif %} {% if module %}| <a href="{% url 'module_detail' course.id module.id %}">{{ module.title }}</a>{% endif %}
+               </div>
+           </div>
+             <div class="row">
+                 <div class="col-xs-4">
+                     <h2 class="mod-title-st">{{ module.title }}</h2>
+                 </div>
+                 <div class="col-xs-8 nopadding">
+                   <ul class="switch-btn">
+                     <li class="btn-left"{% if "/study" in request.path  %}class="active"{% endif %}>  <a href="{% url "module_detail" course.id module.id %}" class="btn-left ">Study</a> </li>
+                     <li class="btn-right"{% if "/overview" in request.path %}class="active"{% endif %}>  <a href="{% url "module_overview" course.id module.id %}" class="btn-right active">Overview</a></li>
+                   </ul>
+                 </div>
+             </div>
+           {% for page, count in pages_list.items %}
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="course-card" style="height:209px">
+                  <h5><a href="{% url 'module_detail' course.id module.id %}?page={{page.sort_index}}">Page {{page.sort_index}}</a></h5>
+                      {% if user.get_manager_permission %}
+                          {% if page != last_page %}
+                                <a href="?page_id={{ page.id }}&reorder=down"><div class="rate-down"></div></a>
+                          {% endif %}
+                          {% if page != first_page %}
+                              <a href="?page_id={{ page.id }}&reorder=up"><div class="rate-up"></div></a>
+                          {% endif %}
+                    {% else %}
+                        <label><input class="chek-seen" type="checkbox" {% if page.sort_index in pages_history %}checked="checked"{% endif %}></label>
+                    {% endif %}
+                  <div class="course-desc">{% if count > 0 %}{{ count }} note(s){% endif %}</div>
+                  <div class="course-controls" style="margin-top:135px">
+                    {% if user.get_manager_permission %}
+                  <a href="{% url "page_edit" course.id module.id page.id %}">
+                  <div class="edit-icon"></div>
+                  </a>
+                  <a class="del-dialog" href="#page_delete{{ page.id }}">
+                    <div class="delete-icon"></div>
+                  </a>
+
+                  <div class="hidden">
+                    <div class="popup" id="page_delete{{ page.id }}">
+                      <h5>Delete '{{ page.sort_index }}' page?</h5>
+                        <div class="btn-wrapp">
+                        <a href="#" class="cancel-btn mfp-close">Cancel</a>
+                        <a href="{% url "page_delete" course.id module.id page.id %}">Yes</a>
+                       </div>
+                     </div>
+                    </div>
+                    {% endif %}
+                   <a class="open-btn" href="{% url 'module_detail' course.id module.id %}?page={{page.sort_index}}">Open</a>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+         </div>
+         <div class="row">
+           <div class="col-xs-11 page-btn-wrapp">
+         {% if user.get_manager_permission %}
+             <a href="{% url 'img_page_add' course.id module.id %}" class="orange page-btn"
+                id="addImgButton">New image page</a>
+             <a href="{% url 'custom_page_add' course.id module.id %}" class="orange page-btn"
+                id="addCstmButton">New custom page</a><br><br>
+         {% endif %}
+         </div>
+         </div>
+     </div>
+ </main>
+
+ <footer>
+     <div class="container">
+         <div class="row">
+             <div class="col-xs-12">
+
+                 <p>Cources Management. All Rights Reserved.</p>
+
+             </div>
+         </div>
+     </div>
+ </footer>
+
+{% endblock content %}

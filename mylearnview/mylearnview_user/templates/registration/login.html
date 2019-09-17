@@ -1,0 +1,32 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-offset-3 col-sm-6 col-xs-12 main-container">
+                <div class="login-form">
+                    <h3>Log In</h3>
+
+                    <form action="{% url 'login' %}" method="post">
+                        {%csrf_token%}
+                        {% for error in form.non_field_errors %}
+                        <div class="input-field field-error">
+                            {{error}}
+                        </div>
+                        {% endfor %}
+                        {% for field in form %}
+                        <div class="input-field">
+                            {{field}}
+                        </div>
+                        {% endfor %}
+                        <button>Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

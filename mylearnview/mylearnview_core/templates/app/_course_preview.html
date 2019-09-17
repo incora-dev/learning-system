@@ -1,0 +1,43 @@
+{% load static %}
+
+<div class="course-card">
+    <h5>
+        <img {% if course.icon %}src="{{ course.icon.url }}"
+             {% else %}src="{% static 'img/default-img.svg' %}{% endif %}"
+             alt="title">
+        {{ course.title }}
+    </h5>
+
+    <div class="course-desc">{{ course.description |linebreaks |truncatewords:20 }}</div>
+    <i class="course-email">{{ course.created_by }}</i>
+    <i class="course-date">{{ course.created_datetime }}</i>
+    <div class="course-controls">
+        {% if user.get_manager_permission %}
+            <a href="{% url "course_edit" course.id %}">
+                <div class="edit-icon"></div>
+            </a>
+            <a class="del-dialog" href="#course_delete_{{ course.id }}">
+                <div class="delete-icon"></div>
+            </a>
+            <div class="hidden">
+                <div class="popup" id="course_delete_{{ course.id }}">
+                    <h5>Delete '{{ course.title }}' course?</h5>
+                    <div class="btn-wrapp">
+                        <a href="#" class="cancel-btn mfp-close">Cancel</a>
+                        <a href="{% url "course_delete" course.id %}" class=""/>Yes</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if not block %}
+        <a class="open-btn" href="{% url 'course_detail' course.id %}">Open</a>
+        {% else %}
+
+        <div class="closed-notification center">
+            Closed
+            <img class="lock-icon" src="{% static 'img/lock.svg' %}" alt="lock">
+            </div>
+        {% endif %}
+
+    </div>
+</div>

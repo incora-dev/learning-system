@@ -1,0 +1,34 @@
+{% extends "app/base.html" %}
+{% load static from staticfiles %}
+
+{% block content %}
+
+<main>
+    <div class="courses-list">
+        <div class="container">
+          <div class="row">
+              <div class="col-sm-12 breacrumbs">
+                  <a href="{% url 'home' %}">Library</a>
+              </div>
+          </div>
+            <div class="row">
+                <h2>You haven't acess to that course</h2>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+
+                <p>Cources Management. All Rights Reserved.</p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% endblock content %}

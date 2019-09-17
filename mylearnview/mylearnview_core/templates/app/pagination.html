@@ -1,0 +1,35 @@
+<nav class="pagination_wrapp">
+  <ul class="pagination">
+     {% if has_previous %}
+         <li  >
+           <a href="?page={{ previous }}"><span aria-hidden="true">&laquo;</span></a>
+         </li>
+     {% endif %}
+     {% if show_first %}
+         <li>
+           <a href="?page=1">1</a>
+         </li>
+         <li>
+             <span class="ellipsis">...</span>
+         </li>
+     {% endif %}
+     {% for p in page_numbers %}
+         <li>
+           <a {% ifequal p page %}class="active"{% endifequal %} href="?page={{ p }}">{{ p }}</a>
+         </li>
+     {% endfor %}
+     {% if show_last %}
+         <li>
+             <span class="ellipsis">...</span>
+         </li>
+         <li>
+           <a href="?page={{ pages }}">{{ pages }}</a>
+         </li>
+     {% endif %}
+     {% if has_next %}
+         <li>
+             <a href="?page={{ next }}">  <span aria-hidden="true">&raquo;</span></a>
+         </li>
+     {% endif %}
+   </ul>
+</nav>

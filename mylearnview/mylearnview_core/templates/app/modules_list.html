@@ -1,0 +1,104 @@
+{% extends "app/base.html" %}
+{% load static from staticfiles %}
+
+{% block content %}
+
+<main>
+    <div class="courses-list">
+        <div class="container">
+          <div class="row">
+              <div class="col-sm-12 breacrumbs">
+                  <a href="{% url 'home' %}">Library </a>  {% if course %}| <a href="{% url 'course_detail' course.id %}">{{ course.title }} </a> {% endif %} {% if module %}| <a href="{% url 'module_detail' course.id module.id %}">>{{ module.title }}</a>{% endif %}
+              </div>
+          </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="course-form course-form-mod" style="height:100%">
+                        <h5>
+                            <img {% if course.icon %}src="{{ course.icon.url }}"
+                                 {% else %}src="{% static 'img/default-img.svg'%}{% endif %}"
+                             alt="title">
+                            {{ course.title }}
+                        </h5>
+                        <div class="course-info">
+                            <i class="course-email">{{ course.created_by }}</i><br>
+                            <i class="course-date">{{ course.created_datetime }}</i>
+                        </div>
+                        <div class="course-desc">{{ course.description }} </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                {% for module in page_obj %}
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="course-card">
+                        <h5>{{ module.title }}</h5>
+                        {% if user.get_manager_permission %}
+
+                            {% if module != last_module %}<a href="?module={{ module.id }}&reorder=down"><div class="rate-down"></div></a>{% endif %}
+                            {% if module != first_module %}<a href="?module={{ module.id }}&reorder=up"><div class="rate-up"></div></a>{% endif %}
+
+                        {% endif %}
+                        <div class="course-desc">{{ module.description |truncatewords:20 }}
+                        </div>
+                        <i class="course-email">{{ module.created_by }}</i>
+                        <i class="course-date">{{ module.created_datetime }}</i>
+
+                        <div class="course-controls">
+                          {% if user.get_manager_permission %}
+                          <a href="{% url "module_edit" course.id module.id %}" >
+                          <div class="edit-icon"></div>
+                          </a>
+
+                          <a class="del-dialog" href="#course_delete_{{module.id}}">
+                            <div class="delete-icon"></div>
+                          </a>
+
+                        <div class="hidden">
+                          <div class="popup" id="course_delete_{{module.id}}">
+                            <h5>Delete '{{ module.title }}' module?</h5>
+                            <div class="btn-wrapp">
+                              <a href="#" class="cancel-btn mfp-close">Cancel</a>
+                              <a href="{% url "module_delete" course.id module.id %}" class=""/>Yes</a>
+                            </div>
+                          </div>
+                        </div>
+      {% endif %}
+      <a class="open-btn" href="{% url 'module_detail' course.id module.id %}">Open</a>
+          </div>
+            </div>
+                </div>
+                      {% endfor %}
+                <div class="row round-btn-wrapp">
+                      {% if user.get_manager_permission %}
+                  <div class="col-xs-12">
+                    <a href="{% url 'module_add' course.id %}" class="round-btn"  class="orange-btn" id="addModuleButton">+</a>
+                  </div>
+                      {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+  <div class="hidden">
+    <div class="popup" id="course_delete">
+      <h5>Delete Module?</h5>
+      <button href="#course_changed" id="save_course" class="mfp-close mfp-yes">Yes</button>
+      <button class="mfp-close mfp-cancel">Cancel</button>
+    </div>
+  </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+
+                <p>Cources Management. All Rights Reserved.</p>
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% endblock content %}

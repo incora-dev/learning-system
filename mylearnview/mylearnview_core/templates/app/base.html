@@ -1,0 +1,62 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cources Managment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+  <div id="loading" style="position: fixed;top: 0;left: 0;right: 0;bottom: 0;z-index: 100;background: #fafcfd;"></div>
+
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="logo col-xs-3">
+          <a id="logo-container" href="{% url 'home' %}"><img src="{% static 'img/logo.svg' %}" alt="logo"></a>
+        </div>
+        <div class="col-xs-6">
+        </div>
+        <div class="col-xs-3">
+
+          {% if user.is_authenticated %}
+                <div class="user-info">
+            <img class="placeholder-icon" src="{% static 'img/placeholder.svg' %}" alt="placeholder">
+            <span>  {{ user.username }} </span>
+            
+            <a href="{% url 'logout' %}"><img class="logout-icon" src="{% static 'img/logout.svg' %}" alt="logout"></a>
+          </div>
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+
+  {% block content %} {% endblock content %}
+
+<a class="popupnotif" href="#message"></a>
+<div class="hidden">
+
+  <div class="popup" id="message">
+    <h5 id="notification">
+      {% for message in messages %}
+      {{ message }}
+      {% endfor %}
+    </h5>
+      <a href="#" class="cancel-btn mfp-close mfp-close-ok">OK</a>
+  </div>
+</div>
+
+  <script src="{% static 'js/libs.js' %}"></script>
+  <script src="{% static 'js/common.js' %}"></script>
+  <script src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</body>
+
+</html>
